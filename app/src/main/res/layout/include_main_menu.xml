@@ -23,6 +23,42 @@
         app:tabTextAppearance="@style/TextAppearance.AppTheme.BoldHeading"
         app:tabTextColor="@android:color/darker_gray" />
 
+    <!-- todo ideally filters should be dynamic-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="monospace"
+            android:text="@string/filters"
+            android:textAllCaps="true" />
+
+        <TextView
+            style="@style/StadiumOutlined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/spicy" />
+
+        <TextView
+            style="@style/StadiumOutlined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/vegan" />
+    </LinearLayout>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/menu_viewpager"
         android:layout_width="match_parent"

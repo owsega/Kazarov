@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Kazarov</string>
     <string name="header_subtitle">delivery</string>
+    <string name="filters">Filters</string>
+    <string name="spicy">Spicy</string>
+    <string name="vegan">Vegan</string>
 </resources>

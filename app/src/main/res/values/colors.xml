@@ -4,5 +4,8 @@
     <color name="colorPrimaryDark">#F2F2F2</color>
     <color name="colorAccent">@color/bloodRed</color>
     <color name="bloodRed">#BC3423</color>
+
     <color name="halfWhite">#88FFFFFF</color>
+    <color name="gray36a">#36000000</color>
+    <color name="gray08a">#08000000</color>
 </resources>
