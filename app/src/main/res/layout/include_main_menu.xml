@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/half_stadium_rect"
     android:orientation="vertical"
     app:behavior_overlapTop="32dp"
@@ -15,10 +15,12 @@
         android:id="@+id/menu_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/half_stadium_rect"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabIndicatorHeight="0dp"
         app:tabSelectedTextColor="@android:color/black"
-        app:tabTextAppearance="@style/TextAppearance.AppCompat.Title"
+        app:tabTextAppearance="@style/TextAppearance.AppTheme.BoldHeading"
         app:tabTextColor="@android:color/darker_gray" />
 
     <androidx.viewpager.widget.ViewPager
