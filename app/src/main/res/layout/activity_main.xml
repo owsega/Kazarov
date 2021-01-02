@@ -40,9 +40,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:visibility="invisible"
         app:backgroundTint="@android:color/white"
         app:layout_anchor="@id/menu"
         app:layout_anchorGravity="bottom|right|end"
-        app:layout_behavior=".DependentViewAwareBehavior"
+        app:layout_behavior=".DependentViewHalfHeightAwareBehavior"
         app:srcCompat="@drawable/ic_cart" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
