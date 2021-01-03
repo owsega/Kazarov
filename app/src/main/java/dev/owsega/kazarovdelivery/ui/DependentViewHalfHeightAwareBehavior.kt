@@ -7,7 +7,6 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import dev.owsega.kazarovdelivery.R
 
 /**
  * Shows FAB when a dependent view's top is at least half of the screen height, and hides it otherwise.
@@ -45,7 +44,8 @@ class DependentViewHalfHeightAwareBehavior(context: Context?, attrs: AttributeSe
     ) {
         super.onStopNestedScroll(coordinatorLayout, child, target, type)
         val rect = Rect()
-        val anchor = coordinatorLayout.findViewById<View>(R.id.menu)  //todo hardcoded anchor view
+        val anchorId = (child.layoutParams as CoordinatorLayout.LayoutParams).anchorId
+        val anchor = coordinatorLayout.findViewById<View>(anchorId)
         anchor.getHitRect(rect)
         val shouldHide = rect.top < heightThreshold
         if (shouldHide && child.visibility == View.VISIBLE) {
