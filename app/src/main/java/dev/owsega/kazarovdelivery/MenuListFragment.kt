@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import dev.owsega.kazarovdelivery.databinding.FragmentMenuBinding
+import dev.owsega.kazarovdelivery.databinding.ListMenuBinding
 
 class MenuListFragment : Fragment() {
     private var _binding: FragmentMenuBinding? = null
@@ -15,14 +16,18 @@ class MenuListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
-        val recyclerView = _binding!!.root as RecyclerView
+        val recyclerView = _binding!!.root
         recyclerView.adapter = MenuListAdapter(fetchData(arguments?.getString(TAG)))
         return recyclerView
     }
 
     private fun fetchData(category: String?): List<FoodItem> {
-        // TODO("Not yet implemented")
-        return listOf()
+        // TODO("Dummy Data")
+        return listOf(
+            FoodItem(10111, "https://picsum.photos/200"),
+            FoodItem(10222202, "https://picsum.photos/200"),
+            FoodItem(10111L, "https://picsum.photos/200")
+        )
     }
 
     override fun onDestroyView() {
@@ -31,22 +36,22 @@ class MenuListFragment : Fragment() {
     }
 
     internal class MenuListAdapter(private val data: List<FoodItem>) : RecyclerView.Adapter<VH>() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-            return VH(LinearLayout(parent.context))
-            // TODO("Not yet implemented")
-        }
-
         override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(data[position])
         override fun getItemCount(): Int = data.size
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            VH(ListMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    internal class VH(view: View) : RecyclerView.ViewHolder(view) {
+    internal class VH(private val binding: ListMenuBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(foodItem: FoodItem) {
-            //  TODO("Not yet implemented")
+            Glide.with(binding.foodImage)
+                .load(foodItem.image)
+                // .apply(RoundedTopCornersOnlyTransform)
+                .into(binding.foodImage)
         }
     }
 
-    data class FoodItem(val id: Long)
+    data class FoodItem(val id: Long, val image: String)
 
     companion object {
         private const val TAG = "MenuListFragment"

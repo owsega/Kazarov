@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/half_stadium_rect"
     android:orientation="vertical"
     app:behavior_overlapTop="32dp"
@@ -62,5 +62,6 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/menu_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/detail_backdrop_height" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
