@@ -1,4 +1,4 @@
-package dev.owsega.kazarovdelivery
+package dev.owsega.kazarovdelivery.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dev.owsega.kazarovdelivery.data.model.HeaderAdvert
 import dev.owsega.kazarovdelivery.databinding.FragmentHeaderBinding
 
 class HeaderAdvertFragment : Fragment() {
@@ -25,8 +26,7 @@ class HeaderAdvertFragment : Fragment() {
     }
 
     companion object {
-        const val TAG = "HeaderAdvertFragment"
-        fun newInstance(data: MainActivity.HeaderPageData) = HeaderAdvertFragment().apply {
+        fun newInstance(data: HeaderAdvert) = HeaderAdvertFragment().apply {
             arguments = Bundle().apply {
                 putString(Intent.EXTRA_TITLE, data.title)
                 putString(Intent.EXTRA_TEXT, data.subtitle)

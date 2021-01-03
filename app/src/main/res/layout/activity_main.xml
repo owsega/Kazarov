@@ -45,6 +45,6 @@
         app:backgroundTint="@android:color/white"
         app:layout_anchor="@id/menu"
         app:layout_anchorGravity="bottom|right|end"
-        app:layout_behavior=".DependentViewHalfHeightAwareBehavior"
+        app:layout_behavior=".ui.DependentViewHalfHeightAwareBehavior"
         app:srcCompat="@drawable/ic_cart" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package dev.owsega.kazarovdelivery
+package dev.owsega.kazarovdelivery.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import dev.owsega.kazarovdelivery.data.model.FoodItem
 import dev.owsega.kazarovdelivery.databinding.FragmentMenuBinding
 import dev.owsega.kazarovdelivery.databinding.ListMenuBinding
 
@@ -50,8 +51,6 @@ class MenuListFragment : Fragment() {
                 .into(binding.foodImage)
         }
     }
-
-    data class FoodItem(val id: Long, val image: String)
 
     companion object {
         private const val TAG = "MenuListFragment"

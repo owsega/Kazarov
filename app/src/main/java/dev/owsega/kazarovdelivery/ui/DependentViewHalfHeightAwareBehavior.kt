@@ -1,4 +1,4 @@
-package dev.owsega.kazarovdelivery
+package dev.owsega.kazarovdelivery.ui
 
 import android.content.Context
 import android.graphics.Rect
@@ -7,6 +7,7 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dev.owsega.kazarovdelivery.R
 
 /**
  * Shows FAB when a dependent view's top is at least half of the screen height, and hides it otherwise.
