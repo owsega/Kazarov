@@ -1,4 +1,4 @@
-package dev.owsega.kazarovdelivery.ui
+package dev.owsega.kazarovdelivery
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.owsega.kazarovdelivery.data.model.FoodItem
+import com.bumptech.glide.request.RequestOptions
 import dev.owsega.kazarovdelivery.databinding.FragmentMenuBinding
 import dev.owsega.kazarovdelivery.databinding.ListMenuBinding
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation.CornerType.TOP
 
 class MenuListFragment : Fragment() {
     private var _binding: FragmentMenuBinding? = null
@@ -47,7 +50,7 @@ class MenuListFragment : Fragment() {
         fun bind(foodItem: FoodItem) {
             Glide.with(binding.foodImage)
                 .load(foodItem.image)
-                // .apply(RoundedTopCornersOnlyTransform)
+                .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(64, 0, TOP)))
                 .into(binding.foodImage)
         }
     }
