@@ -1,49 +1,57 @@
 package dev.owsega.kazarovdelivery.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.airbnb.mvrx.BaseMvRxFragment
+import com.airbnb.mvrx.activityViewModel
+import com.airbnb.mvrx.withState
 import dev.owsega.kazarovdelivery.data.model.HeaderAdvert
-import dev.owsega.kazarovdelivery.databinding.ActivityMainBinding
+import dev.owsega.kazarovdelivery.databinding.FragmentMainBinding
+import dev.owsega.kazarovdelivery.viewmodel.MainFragmentVM
 
 
-class MainActivity : AppCompatActivity() {
+class MainFragment : BaseMvRxFragment() {
+    private val viewModel: MainFragmentVM by activityViewModel()
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var binding: ActivityMainBinding
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setupAppbar()
-        setupViewPagers()
-    }
-
-    private fun setupAppbar() {
         // set appbar's height to about 70% of the screen size
         val heightDp = (resources.displayMetrics.heightPixels / 1.4).toFloat()
         val lp = binding.appbar.layoutParams as CoordinatorLayout.LayoutParams
         lp.height = heightDp.toInt()
+
+        // setup ViewPagers
+        binding.header.dotsIndicator.setViewPager(binding.header.headerViewpager)
+        binding.header.headerViewpager.adapter?.registerDataSetObserver(binding.header.dotsIndicator.dataSetObserver)
+        binding.menu.menuTabs.setupWithViewPager(binding.menu.menuViewpager)
+
+        return _binding!!.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setupViewPagers() {
         //  todo
-        val dummyHeaderData = listOf(
-            HeaderAdvert("Saturday Discount", "Coca-cola is a gift to any order"),
-            HeaderAdvert("Tuesday Discount", "Coca-cola is a gift to any order"),
-            HeaderAdvert("Monday Discount", "Coca-cola is a gift to any order"),
-        )
-        binding.header.headerViewpager.adapter = HeaderPagerAdapter(dummyHeaderData, supportFragmentManager)
-        binding.header.dotsIndicator.setViewPager(binding.header.headerViewpager)
-        binding.header.headerViewpager.adapter?.registerDataSetObserver(binding.header.dotsIndicator.dataSetObserver)
-
-        //  todo
         val dummyMenuData = listOf("Pizza", "Sushi", "Drinks")
-        binding.menu.menuViewpager.adapter = MenuPagerAdapter(dummyMenuData, supportFragmentManager)
-        binding.menu.menuTabs.setupWithViewPager(binding.menu.menuViewpager)
+        binding.menu.menuViewpager.adapter = MenuPagerAdapter(dummyMenuData, childFragmentManager)
+    }
+
+    override fun invalidate() {
+        withState(viewModel) { state ->
+            binding.header.headerViewpager.adapter = HeaderPagerAdapter(state.adverts, childFragmentManager)
+
+        }
     }
 
     private class HeaderPagerAdapter(private val pages: List<HeaderAdvert>, fm: FragmentManager) :
